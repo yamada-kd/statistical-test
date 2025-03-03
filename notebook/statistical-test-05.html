@@ -354,6 +354,19 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="id3">
 <h2><span class="section-number">5.2. </span>ノンパラメトリック検定<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>パラメトリック検定はデータが特定の確率分布（多くは正規分布）に従うことを前提としています．この前提が成り立つ場合，パラメトリック検定は強力な手法であり，サンプルサイズが小さくても高い検出力を持つことがあります．代表的なパラメトリック検定には以下のものがあげられます．</p>
+<ul class="simple">
+<li><p>t検定</p></li>
+<li><p>カイ二乗検定</p></li>
+<li><p>分散分析</p></li>
+</ul>
+<p>一方で，ノンパラメトリック検定はデータが特定の確率分布に従うことを仮定しない検定方法です．データの背景となる確率分布の形状が不明な場合や，正規性が疑わしい場合に利用します．代表的なノンパラメトリック検定には以下のものが挙げられます．</p>
+<ul class="simple">
+<li><p>ウィルコクソンの順位和検定</p></li>
+<li><p>ウィルコクソンの符号順位検定</p></li>
+<li><p>クラスカル・ウォリス検定</p></li>
+</ul>
+<p>ウィルコクソンの順位和検定はパラメトリック検定における対応のないt検定と同様の状況で，ウィルコクソンの符号順位検定はパラメトリック検定における対応のあるt検定と同様の状況で，クラスカル・ウォリス検定はパラメトリック検定における分散分析と同様の状況で利用する検定法です．</p>
 </div>
 <div class="section" id="id4">
 <h2><span class="section-number">5.3. </span>統計検定の繰り返し<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
