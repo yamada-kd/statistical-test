@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>統計検定 &#8212; 統計プログラミングの初歩</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/neko.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">統計プログラミングの初歩</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebook/statistical_test.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/tugsisilo/statistical-test/tree/main/notebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/tugsisilo/statistical-test/blob/main/notebook/statistical_test.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   はじめに
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   統計分布について
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     データの統計量
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     ヒストグラム
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     統計分布
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   統計検定について
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     基本概念
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     仮説検定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p">
+     優位水準とp値
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   集団の平均値の検定
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     基本概念
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     対応の有無
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t">
+     スチューデントのt検定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tz">
+     ウェルチのt検定とz検定
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   様々な統計検定法
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     パラメトリック
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     ノンパラメトリック検定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     統計検定の繰り返し
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     多重検定の補正
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     アドホックな多重検定法
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>統計検定</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   はじめに
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   統計分布について
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     データの統計量
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     ヒストグラム
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     統計分布
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   統計検定について
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     基本概念
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     仮説検定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p">
+     優位水準とp値
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   集団の平均値の検定
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     基本概念
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     対応の有無
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t">
+     スチューデントのt検定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tz">
+     ウェルチのt検定とz検定
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   様々な統計検定法
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     パラメトリック
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     ノンパラメトリック検定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     統計検定の繰り返し
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     多重検定の補正
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     アドホックな多重検定法
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>統計検定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>はじめに<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>科学や工学の分野では，ある手法や条件が他と比べて優れているかどうかを評価することが重要です．例えば，機械学習やデータ科学分野では，新しく開発した方法が既存の手法よりも良い結果を示すことを証明するために，性能比較が必要です．また，医薬品の開発の現場では，新たに開発した医薬品が効果的であるかの検証が必要です．しかし，多くの研究では，最も良い結果（いわゆる「チャンピオンデータ」）を報告することに重点が置かれ，その結果が統計的に有意な差を持つのかどうかについての議論が不十分であることが少なくありません．</p>
+<p>科学的な主張を正当化するには，単に数値の優劣を示すだけでなく，その差が統計的に意味のあるものかを検証しなければなりません．例えば，ある手法の予測性能が従来法よりも高かったとしても，その差が単なる偶然によるものなのか，あるいは本当に再現性のある有意なものなのかを慎重に検討する必要があります．このような判断を適切に行うためには，統計検定という手法が必要不可欠です．</p>
+<p>この教材では，統計検定の基本的な概念からはじめ，t検定や多重比較検定を含む代表的な手法を紹介します．これらの手法を理解し活用することで，得られたデータの差が意味のあるものかどうかを客観的に評価できるようになります．科学的な議論の質を高め，より信頼性のある結論を導くために，統計検定の知識を学びます．</p>
+</div>
+<div class="section" id="id3">
+<h2>統計分布について<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>データの統計量<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id5">
+<h3>ヒストグラム<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id6">
+<h3>統計分布<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>統計検定について<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>基本概念<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id9">
+<h3>仮説検定<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="p">
+<h3>優位水準とp値<a class="headerlink" href="#p" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>集団の平均値の検定<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h3>基本概念<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id12">
+<h3>対応の有無<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="t">
+<h3>スチューデントのt検定<a class="headerlink" href="#t" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="tz">
+<h3>ウェルチのt検定とz検定<a class="headerlink" href="#tz" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>様々な統計検定法<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h3>パラメトリック<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id15">
+<h3>ノンパラメトリック検定<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id16">
+<h3>統計検定の繰り返し<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<p>A，B，Cというの3群のサンプルデータがあるとき，これらの統計検定つまり，AB間，BC間，CA間の統計検定にt検定を繰り返し利用してはいけません．これらの3組の検定を2群間における3回のt検定で行う場合，少なくともひとつの組み合わせに差が出る確率 <span class="math notranslate nohighlight">\(p\)</span> は以下の式で計算されます．</p>
+<p><span class="math notranslate nohighlight">\(
+p= 1 - p_\phi
+\)</span></p>
+<p>ここで，<span class="math notranslate nohighlight">\(p_\phi\)</span> はすべての組み合わせで差が出ない確率です．今のようにA，B，Cという3群を考える場合，この <span class="math notranslate nohighlight">\(p_\phi\)</span> は以下のように計算されます．</p>
+<p><span class="math notranslate nohighlight">\(
+p_\phi=p_ap_bp_c
+\)</span></p>
+<p>ここで <span class="math notranslate nohighlight">\(p_a\)</span>，<span class="math notranslate nohighlight">\(p_b\)</span>，<span class="math notranslate nohighlight">\(p_c\)</span> はそれぞれ，AB間で差が出ない確率，BC間で差が出ない確率，CA間で差が出ない確率です．</p>
+<p>これに基づいて <span class="math notranslate nohighlight">\(p\)</span> を計算すると，この値は各サンプルデータ間で差が出る確率より大きな数になります．例えば，各サンプルデータ間で差が出る確率を<span class="math notranslate nohighlight">\(0.01\)</span>とした場合，<span class="math notranslate nohighlight">\(p\)</span> は以下のように計算されます．</p>
+<p><span class="math notranslate nohighlight">\(
+1 - (1 - 0.01) * (1 - 0.01) * (1 - 0.01) = 0.029701
+\)</span></p>
+<p>これは，各サンプルデータ間で差が出る確率として設定した0.01よりはるかに大きい値です．</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> を群間で差が出る確率とおいたとき，少なくともひとつの組み合わせに差が出る確率は以下のようにあらわされます．</p>
+<p><span class="math notranslate nohighlight">\(
+1 - (1 - \alpha)^n
+\)</span></p>
+<p>この値は <span class="math notranslate nohighlight">\(\alpha\)</span> を <span class="math notranslate nohighlight">\(0.05\)</span> とし，<span class="math notranslate nohighlight">\(n\)</span> を <span class="math notranslate nohighlight">\(10\)</span> として計算すると <span class="math notranslate nohighlight">\(0.4013\)</span> となります．これは，群間で差が出る確率がたとえ5%であったとしても検定を10回繰り返すと少なくともそれらの組み合わせて差が出る確率は約40%に達するということを意味します．統計検定を繰り返すと期待以上に有意な差が生じてしまうことになるのです．</p>
+</div>
+<div class="section" id="id17">
+<h3>多重検定の補正<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>上記のように，複数回のt検定を繰り返すことで少なくとも1回は偶然に有意な差が出てしまう確率（多重比較による第一種の過誤）が増大してしまいます．これを防ぐために，多重比較の影響を考慮したボンフェローニ補正（Bonferroni correction）が用いられます．</p>
+<p>ボンフェローニ補正では，元の有意水準 <span class="math notranslate nohighlight">\(\alpha\)</span> を比較の回数 <span class="math notranslate nohighlight">\(n\)</span> で割ることで各比較における有意水準を厳しく設定します．具体的には，新しい有意水準 <span class="math notranslate nohighlight">\(\alpha'\)</span> を次のように計算します．</p>
+<p><span class="math notranslate nohighlight">\(
+\alpha'=\displaystyle\frac{\alpha}{n}
+\)</span></p>
+<p>これによって，複数回の検定を行っても全体としての第一種の過誤（偽陽性）の確率を制御する子tができます．</p>
+<p>例えば、もともとの有意水準 <span class="math notranslate nohighlight">\(\alpha=05\)</span> で3回のt検定（AB間、BC間、CA間）を行う場合，補正後の有意水準は以下のようになります．</p>
+<p><span class="math notranslate nohighlight">\(
+\alpha'=\displaystyle\frac{0.05}{3}=0.0167
+\)</span></p>
+<p>つまり，それぞれのt検定のp値が0.0167より小さくないと有意な差があるとは判断しません．ボンフェローニ補正は以下のように計算します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># ダミーデータの作成（3群: A, B, C）</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+    <span class="c1"># すべての組み合わせ（AB, BC, CA）でt検定</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">B</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">C</span><span class="p">}</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># (&#39;A&#39;, &#39;B&#39;), (&#39;A&#39;, &#39;C&#39;), (&#39;B&#39;, &#39;C&#39;)</span>
+
+    <span class="c1"># 有意水準</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+    <span class="n">n_tests</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>  <span class="c1"># 検定回数</span>
+    <span class="n">alpha_corrected</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">n_tests</span>  <span class="c1"># ボンフェローニ補正後の有意水準</span>
+
+    <span class="c1"># 検定の実施</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+        <span class="n">t_stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="n">g1</span><span class="p">],</span> <span class="n">groups</span><span class="p">[</span><span class="n">g2</span><span class="p">])</span>
+        <span class="n">significant</span> <span class="o">=</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha_corrected</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">significant</span><span class="p">))</span>
+
+    <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Group 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Group 2&quot;</span><span class="p">,</span> <span class="s2">&quot;p-value&quot;</span><span class="p">,</span> <span class="s2">&quot;Significant (Bonferroni)&quot;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_results</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>アドホックな多重検定法<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>ボンフェローニ補正は複数の検定を行う際に第一種過誤の確率を厳しく抑制するために用いられますが，その分非常に保守的で，有意差を見逃すリスクが高まります．この問題を緩和するために，より柔軟で検出力の高いアドホックな多重検定法がいくつか提案されています．ここでは，代表的な4つの方法を紹介します．</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>方法名</p></th>
+<th class="head"><p>適用場面</p></th>
+<th class="head"><p>前提条件</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ダネット検定</p></td>
+<td><p>対照群と複数の処置群の比較</p></td>
+<td><p>パラメトリック</p></td>
+</tr>
+<tr class="row-odd"><td><p>チューキー・クレーマー法</p></td>
+<td><p>すべての群間のペアワイズ比較</p></td>
+<td><p>パラメトリック</p></td>
+</tr>
+<tr class="row-even"><td><p>スティール・ドゥワス法</p></td>
+<td><p>対照群と複数の処置群の比較</p></td>
+<td><p>ノンパラメトリック</p></td>
+</tr>
+<tr class="row-odd"><td><p>ステールの方法</p></td>
+<td><p>すべての群間のペアワイズ比較</p></td>
+<td><p>ノンパラメトリック</p></td>
+</tr>
+</tbody>
+</table>
+<p>ダネット検定は複数の処置群と対照群との比較に特化した方法です．対照群との比較のみを行うため，不必要なペアワイズ比較を省略でき，多重比較による誤検出のリスクを効果的に軽減できます．</p>
+<p>チューキー・クレーマー法はすべての群間でペアワイズ比較を行う場合に適用される手法です．各比較における統計量はt分布に基づいて計算され，ボンフェローニ補正よりも検出力に優れます．</p>
+<p>スティール・ドゥワス法はノンパラメトリックな多重比較法です．パラメトリックのダネット検定と同じく対照群と処置群の比較を行います．各群の順位情報を用いて統計量を算出します．</p>
+<p>ステールの方法はノンパラメトリックな枠組みで群間のペアワイズ比較をするための方法です．これも計算は順位情報に基づくため，正規性の仮定が満たされない場合に有用であり，外れ値の影響を受けにくい特徴を持ちます．</p>
+<p>これらの方法はどれもボンフェローニ補正と比べると保守性が低く，検出力を向上させる効果が期待できます．手法によって適用条件や前提が異なるため，解析の目的やデータの性質に応じて適切な方法を選択することが重要でしょう．</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebook"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      <div class="extra_footer">
+        <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img style="0;margin-bottom:0.2em;" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> © Copyright 2022 Graduate School of Information Sciences, Tohoku University．
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
