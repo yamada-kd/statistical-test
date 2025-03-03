@@ -1,8 +1,9 @@
 ﻿format: jb-book
 root: index
 defaults:
-  numbered: false
+  numbered: true
 parts:
 - caption: 講義
+  numbered: False
   chapters:
   - file: notebook/statistical-test
