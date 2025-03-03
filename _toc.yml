@@ -4,6 +4,9 @@ defaults:
   numbered: true
 parts:
 - caption: 講義
-  numbered: False
   chapters:
-  - file: notebook/statistical-test
+  - file: notebook/statistical-test-01
+  - file: notebook/statistical-test-02
+  - file: notebook/statistical-test-03
+  - file: notebook/statistical-test-04
+  - file: notebook/statistical-test-05
