@@ -3,7 +3,7 @@ root: index
 defaults:
   numbered: true
 parts:
-- caption: 講義
+- caption: 
   chapters:
   - file: notebook/statistical-test-01
   - file: notebook/statistical-test-02
