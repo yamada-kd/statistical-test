@@ -1,7 +1,7 @@
 ﻿format: jb-book
 root: index
 defaults:
-  numbered: true
+  numbered: false
 parts:
 - caption: 講義
   chapters:
