@@ -1,9 +1,46 @@
 #!/usr/bin/env python3
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+np.random.seed(0)
+
+def main():
+    # パラメトリック検定が適用できる正規分布
+    normal_data = np.random.normal(loc=50, scale=10, size=1000)
+
+    # ノンパラメトリック検定が適用されるデータ（分布の混合）
+    nonparametric_data = np.concatenate([
+        np.random.normal(loc=50, scale=10, size=500),  # 正規分布
+        np.random.exponential(scale=10, size=500)   # 指数分布（異なる分布を混合）
+    ])
+
+    plt.figure(figsize=(12, 5))
+
+    # パラメトリック分析に適したデータ
+    plt.subplot(1, 2, 1)
+    sns.histplot(normal_data, bins=30, kde=True)
+    plt.title("Parametric")
+    plt.xlabel("Value")
+    plt.ylabel("Frequency")
+
+    # ノンパラメトリック分析に適したデータ
+    plt.subplot(1, 2, 2)
+    sns.histplot(nonparametric_data, bins=30, kde=True, color="orange")
+    plt.title("Nonparametric")
+    plt.xlabel("Value")
+    plt.ylabel("Frequency")
+
+    plt.tight_layout()
+    plt.show()
+
+if __name__ == "__main__":
+    main()
+
+#!/usr/bin/env python3
+import numpy as np
 import scipy.stats as stats
 import pandas as pd
 from itertools import combinations
-
 np.random.seed(0)
 
 def main():
